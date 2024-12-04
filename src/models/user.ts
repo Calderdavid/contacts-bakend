@@ -38,3 +38,10 @@ User.init(
     }
 );
 
+User.beforeCreate(async(user: User) =>{
+    const salt = await bcryptjs.genSalt(10);
+    user.password = await bcryptjs.hash(user.password, salt);
+})
+
+export default User;
+
