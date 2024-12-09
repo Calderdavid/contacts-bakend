@@ -1,0 +1,31 @@
+<h2>Mis Contactos</h2>
+<a href="/contacts/new" class="btn btn-primary mb-3">Nuevo Contacto</a>
+{{#if contacts.length}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each contacts}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>
+                        <a href="/contacts/edit/{{this._id}}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="/contacts/delete/{{this._id}}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No tienes contactos aún.</p>
+{{/if}}
